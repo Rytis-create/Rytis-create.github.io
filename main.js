@@ -35,6 +35,21 @@ const translations = {
         send: "Send"
     }
 };
+// JavaScript žvaigždžių animacija
+const starBackground = document.querySelector('.star-background');
+
+function createStar() {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.animationDuration = `${Math.random() * 2 + 1}s`;
+    starBackground.appendChild(star);
+}
+
+for (let i = 0; i < 100; i++) {
+    createStar();
+}
 
 document.querySelectorAll('.lang-btn').forEach(button => {
     button.addEventListener('click', () => {
