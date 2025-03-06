@@ -1,45 +1,38 @@
 <!DOCTYPE html>
-<html lang="lt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-lt="Mano Portfolio" data-en="My Portfolio">Mano Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
-    <script src="https://unpkg.com/three@0.132.2/build/three.min.js"></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
-    <script src="main.js" defer></script>
+<html>
+  <head>
+    <title>Mapbox Žemėlapis</title>
+    <!-- Mapbox GL JS ir CSS -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css" rel="stylesheet" />
+    <style>
+      #map {
+        height: 600px;  /* Aukštis */
+        width: 100%;    /* Plotis */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
 
-</head>
-<body>
-    <!-- Kalbos perjungimas -->
-    <div class="language-switcher">
-        <button class="lang-btn active" data-lang="lt">LT</button>
-        <button class="lang-btn" data-lang="en">EN</button>
-    </div>
+    <script>
+      // 1. Įdėkite savo Mapbox tokeną
+      mapboxgl.accessToken = 'pk.eyJ1Ijoicnl0aXMxMjMiLCJhIjoiY203eDRkMXQ5MDFodzJsczZsNmhqbWw0NSJ9.M1CYVTz7inCBl3b2xLq8Ww';
 
-    <!-- 3D Avataras -->
-    <div id="avatar-container">
-        <canvas class="avatar3d"></canvas>
-    </div>
-    <div class="particle-canvas"></div>
+      // 2. Inicializuokite žemėlapį
+      const map = new mapboxgl.Map({
+        container: 'map',          // HTML elemento ID
+        style: 'mapbox://styles/mapbox/streets-v12',  // Stilius (pvz., satellite-v9)
+        center: [25.2797, 54.6872], // [Longitude, Latitude] (Vilnius)
+        zoom: 12                    // Priartinimo lygis
+      });
 
-    <!-- Interaktyvus žemėlapis -->
-    <div class="map-container">
-        <div id="interactive-map"></div>
-        <div class="map-overlay">
-            <button class="map-3d-toggle">3D View</button>
-        </div>
-    </div>
-
-    <!-- CV atsisiuntimas -->
-    <section class="cv-section">
-        <a href="cv.pdf" download class="cv-download">
-            📥 Atsisiųsti CV
-        </a>
-    </section>
-
-    <script src="main.js"></script>
-</body>
+      // 3. Papildomi elementai (neprivaloma)
+      // Pridėti žymeklį
+      new mapboxgl.Marker()
+        .setLngLat([25.2797, 54.6872])
+        .setPopup(new mapboxgl.Popup().setHTML("<h3>Sveikas, čia Vilnius!</h3>"))
+        .addTo(map);
+    </script>
+  </body>
 </html>
