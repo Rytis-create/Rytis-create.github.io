@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RYTIS ALIŠAUSKAS | CV 2025</title>
+    <title>RYTIS ALIŠAUSKAS | Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css">
     <link rel="stylesheet" href="styles.css">
@@ -20,21 +20,64 @@
 
     <!-- Pagrindinis turinys -->
     <main class="glass-container">
-        <header>
+        <!-- Hero sekcija -->
+        <header class="hero">
             <h1 data-translate="name">RYTIS ALIŠAUSKAS</h1>
+            <p data-translate="tagline">Programuotojas | Web kūrėjas</p>
             <a href="cv.pdf" download class="download-btn" data-translate="download">📥 Parsisiųsti CV</a>
         </header>
 
-        <!-- Turinio sekcijos -->
-        <section class="content-section">
-            <div class="timeline-item" data-aos="fade-up">
-                <h2 data-translate="experience">Email:rytis.programer@gmail.com</h2>
-                <!-- Dinaminis turinys (užpildomas per JS) -->
+        <!-- Apie mane sekcija -->
+        <section id="about" class="content-section">
+            <h2 data-translate="about">Apie mane</h2>
+            <p data-translate="aboutText">Esu programuotojas iš Lietuvos, turintis patirties kuriant modernius web sprendimus. Mėgstu iššūkius ir nuolat tobulinu savo įgūdžius.</p>
+        </section>
+
+        <!-- Projektų sekcija -->
+        <section id="projects" class="content-section">
+            <h2 data-translate="projects">Projektai</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3 data-translate="project1">Portfolio puslapis</h3>
+                    <p data-translate="project1Desc">Šis portfolio puslapis, sukurtas naudojant HTML, CSS ir JavaScript.</p>
+                    <a href="#" class="project-link" data-translate="viewProject">Žiūrėti projektą</a>
+                </div>
+                <div class="project-card">
+                    <h3 data-translate="project2">E-parduotuvė</h3>
+                    <p data-translate="project2Desc">E-parduotuvė, sukurta naudojant React ir Node.js.</p>
+                    <a href="#" class="project-link" data-translate="viewProject">Žiūrėti projektą</a>
+                </div>
             </div>
-            <div class="timeline-item" data-aos="fade-up">
-                <h2 data-translate="education">Phone:+37069232493</h2>
-                <!-- Dinaminis turinys -->
+        </section>
+
+        <!-- Įgūdžių sekcija -->
+        <section id="skills" class="content-section">
+            <h2 data-translate="skills">Įgūdžiai</h2>
+            <div class="skills-grid">
+                <div class="skill">
+                    <span data-translate="html">HTML</span>
+                    <div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill">
+                    <span data-translate="css">CSS</span>
+                    <div class="skill-bar"><div class="skill-level" style="width: 85%;"></div></div>
+                </div>
+                <div class="skill">
+                    <span data-translate="js">JavaScript</span>
+                    <div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div>
+                </div>
             </div>
+        </section>
+
+        <!-- Kontaktų sekcija -->
+        <section id="contact" class="content-section">
+            <h2 data-translate="contact">Kontaktai</h2>
+            <form id="contact-form">
+                <input type="text" id="name" placeholder="Jūsų vardas" required>
+                <input type="email" id="email" placeholder="El. paštas" required>
+                <textarea id="message" placeholder="Jūsų žinutė" required></textarea>
+                <button type="submit" data-translate="send">Siųsti</button>
+            </form>
         </section>
     </main>
 
