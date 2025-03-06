@@ -15,7 +15,7 @@ const translations = {
 };
 
 // Žemėlapio konfigūracija
-mapboxgl.accessToken = 'JŪSŲ_MAPBOX_TOKENAS'; // Įdėti į assets/mapbox-token.js
+mapboxgl.accessToken = 'pk.eyJ1Ijoicnl0aXMxMjMiLCJhIjoiY203eDRkMXQ5MDFodzJsczZsNmhqbWw0NSJ9.M1CYVTz7inCBl3b2xLq8Ww';
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v11',
