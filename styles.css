@@ -34,10 +34,11 @@ h1, h2, .lang-btn {
 }
 
 @keyframes twinkle {
-    0% { opacity: 0.2; }
+    0%, 100% { opacity: 0.3; }
     50% { opacity: 1; }
-    100% { opacity: 0.2; }
 }
+
+
 
 /* Žemėlapis apačioje */
 .map-bottom {
@@ -74,9 +75,8 @@ h1, h2, .lang-btn {
 }
 
 .lang-btn.active {
-    background: rgba(255, 255, 255, 0.9);
-    color: #000;
-    border-color: transparent;
+    background: #fff !important;
+    color: #000 !important;
 }
 
 .lang-btn:hover {
