@@ -1,75 +1,176 @@
-// Particle efektas su Three.js
-function initParticles() {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.querySelector('.particle-canvas').appendChild(renderer.domElement);
+// main.js
+class PortfolioApp {
+  constructor() {
+    this.initParticles();
+    this.initMap();
+    this.initLanguage();
+    this.init3DAvatar();
+    this.addEventListeners();
+  }
 
-    const particles = new THREE.BufferGeometry();
+  // Particle efektų inicializavimas
+  initParticles() {
+    if (!window.THREE) {
+      console.error('Three.js nerastas!');
+      return;
+    }
+
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    document.querySelector('.particle-canvas').appendChild(this.renderer.domElement);
+
+    this.createParticles();
+    this.animateParticles();
+  }
+
+  createParticles() {
+    const geometry = new THREE.BufferGeometry();
     const particleCount = 5000;
-    const posArray = new Float32Array(particleCount * 3);
+    const positions = new Float32Array(particleCount * 3);
 
-    for(let i = 0; i < particleCount * 3; i++) {
-        posArray[i] = (Math.random() - 0.5) * 5;
+    for (let i = 0; i < positions.length; i += 3) {
+      positions[i] = (Math.random() - 0.5) * 10;
+      positions[i + 1] = (Math.random() - 0.5) * 10;
+      positions[i + 2] = (Math.random() - 0.5) * 10;
     }
 
-    particles.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    const material = new THREE.PointsMaterial({ size: 0.005 });
-    const particleMesh = new THREE.Points(particles, material);
-    scene.add(particleMesh);
-    camera.position.z = 2;
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const material = new THREE.PointsMaterial({
+      size: 0.005,
+      color: 0x00ffff,
+      transparent: true,
+      opacity: 0.8
+    });
+    
+    this.particles = new THREE.Points(geometry, material);
+    this.scene.add(this.particles);
+    this.camera.position.z = 5;
+  }
 
-    function animate() {
+  animateParticles() {
+    requestAnimationFrame(() => this.animateParticles());
+    this.particles.rotation.x += 0.001;
+    this.particles.rotation.y += 0.002;
+    this.renderer.render(this.scene, this.camera);
+  }
+
+  // Žemėlapio valdymas
+  initMap() {
+    if (!mapboxgl || !mapboxgl.accessToken) {
+      console.error('Mapbox nerastas!');
+      return;
+    }
+
+    this.map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/dark-v11',
+      center: [25.279651, 54.687157],
+      zoom: 12,
+      pitch: 45,
+      bearing: -17.6
+    });
+
+    this.addMapControls();
+    this.add3DToggle();
+    this.addLocationMarker();
+  }
+
+  addMapControls() {
+    this.map.addControl(new mapboxgl.NavigationControl());
+    this.map.addControl(new mapboxgl.FullscreenControl());
+  }
+
+  add3DToggle() {
+    const button = document.createElement('button');
+    button.className = 'map-3d-toggle';
+    button.textContent = '3D View';
+    button.onclick = () => this.toggle3DView();
+    
+    document.querySelector('.map-overlay').appendChild(button);
+  }
+
+  toggle3DView() {
+    const currentPitch = this.map.getPitch();
+    this.map.easeTo({
+      pitch: currentPitch > 0 ? 0 : 60,
+      duration: 2000
+    });
+  }
+
+  addLocationMarker() {
+    new mapboxgl.Marker({
+      color: '#00ffff',
+      scale: 1.2
+    })
+      .setLngLat([25.279651, 54.687157])
+      .setPopup(new mapboxgl.Popup().setHTML('<h3>Mano lokacija</h3>'))
+      .addTo(this.map);
+  }
+
+  // Kalbų valdymas
+  initLanguage() {
+    this.currentLang = localStorage.getItem('portfolioLang') || 'lt';
+    this.applyLanguage(this.currentLang);
+  }
+
+  applyLanguage(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-lt], [data-en]').forEach(el => {
+      el.textContent = el.dataset[lang];
+    });
+    localStorage.setItem('portfolioLang', lang);
+  }
+
+  // 3D Avataro valdymas
+  async init3DAvatar() {
+    try {
+      const loader = new THREE.GLTFLoader();
+      this.avatar = await loader.loadAsync('avatar.glb');
+      
+      const canvas = document.querySelector('.avatar3d');
+      const renderer = new THREE.WebGLRenderer({ 
+        canvas,
+        alpha: true,
+        antialias: true
+      });
+      
+      const scene = this.avatar.scene;
+      const camera = new THREE.PerspectiveCamera(75, canvas.width/canvas.height);
+      camera.position.z = 2;
+      
+      const animate = () => {
         requestAnimationFrame(animate);
-        particleMesh.rotation.y += 0.001;
+        scene.rotation.y += 0.005;
         renderer.render(scene, camera);
+      };
+      animate();
+    } catch (error) {
+      console.error('Klaida įkeliant avatarą:', error);
     }
-    animate();
+  }
+
+  // Event listeners
+  addEventListeners() {
+    window.addEventListener('resize', this.onWindowResize.bind(this));
+    
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        this.currentLang = btn.dataset.lang;
+        this.applyLanguage(this.currentLang);
+      });
+    });
+  }
+
+  onWindowResize() {
+    this.camera.aspect = window.innerWidth / window.innerHeight;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+  }
 }
 
-// Kalbos perjungimas
-const langBtns = document.querySelectorAll('.lang-btn');
-langBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.documentElement.lang = btn.dataset.lang;
-        document.querySelectorAll('[data-lt], [data-en]').forEach(el => {
-            el.textContent = el.dataset[btn.dataset.lang];
-        });
-    });
+// Inicijuoti aplikaciją kai užsikrauna DOM
+document.addEventListener('DOMContentLoaded', () => {
+  const portfolioApp = new PortfolioApp();
 });
-
-// Mapbox žemėlapis
-mapboxgl.accessToken = 'pk.eyJ1Ijoicnl0aXMxMjMiLCJhIjoiY203eDRkMXQ5MDFodzJsczZsNmhqbWw0NSJ9.M1CYVTz7inCBl3b2xLq8Ww';
-const map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/dark-v10',
-    center: [25.279651, 54.687157], // Vilniaus koordinatės
-    zoom: 12
-});
-// Papildomas žemėlapio funkcionalumas
-function initMap() {
-    const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/dark-v10',
-        center: [25.279651, 54.687157],
-        zoom: 12,
-        pitch: 45, // 3D efektas
-        bearing: -17.6
-    });
-
-    // 3D perjungimas
-    document.querySelector('.map-3d-toggle').addEventListener('click', () => {
-        const pitch = map.getPitch() === 0 ? 45 : 0;
-        map.easeTo({ pitch, duration: 1000 });
-    });
-
-    // Markeris su popup
-    new mapboxgl.Marker({ color: '#0ff' })
-        .setLngLat([25.279651, 54.687157])
-        .setPopup(new mapboxgl.Popup().setHTML("<h3>Mano lokacija</h3>"))
-        .addTo(map);
-}
-
-// Inicijuoti žemėlapį po puslapio užkrovimo
-window.addEventListener('load', initMap);
