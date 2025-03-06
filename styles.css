@@ -1,26 +1,26 @@
-
+/* ========== Pagrindiniai nustatymai ========== */
 :root {
     --heading-font: 'Poppins', sans-serif;
-    --body-font: 'Roboto Mono', monospace;
+    --body-font: 'Poppins', sans-serif;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --accent-color: #009ffd;
 }
 
 body {
     font-family: var(--body-font);
     color: white;
+    margin: 0;
+    overflow-x: hidden;
 }
 
-h1, h2, .lang-btn {
-    font-family: var(--heading-font);
-    font-weight: 600;
-}
-/* Tamsus fonas ir žvaigždės */
+/* ========== Žvaigždžių fonas ========== */
 .star-background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, #000000 0%, #1a1a1a 100%);
+    background: #000;
     z-index: -2;
 }
 
@@ -30,7 +30,7 @@ h1, h2, .lang-btn {
     height: 2px;
     background: white;
     border-radius: 50%;
-    animation: twinkle 1.5s infinite;
+    animation: twinkle 2s infinite;
 }
 
 @keyframes twinkle {
@@ -38,53 +38,20 @@ h1, h2, .lang-btn {
     50% { opacity: 1; }
 }
 
-
-
-/* Žemėlapis apačioje */
+/* ========== Žemėlapis apačioje ========== */
 .map-bottom {
-    height: 40vh; 
+    height: 40vh;
     width: 100%;
     position: fixed;
     bottom: 0;
     left: 0;
-    border-top: 3px solid rgba(255, 255, 255, 0.2);
+    border-top: 3px solid rgba(255, 255, 255, 0.1);
     z-index: 0;
 }
 
-/* Kalbos mygtukai (matomi) */
-.language-switcher {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 10px;
-    border-radius: 10px;
-    backdrop-filter: blur(5px);
-}
-
-.lang-btn {
-    background: none;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: rgba(255, 255, 255, 0.7);
-    padding: 8px 15px;
-    margin: 0 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 8px;
-}
-
-.lang-btn.active {
-    background: #fff !important;
-    color: #000 !important;
-}
-
-.lang-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-/* Turinio sekcija */
+/* ========== Stiklo efektas ========== */
 .glass-container {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--glass-bg);
     backdrop-filter: blur(12px);
     border-radius: 20px;
     margin: 2rem;
@@ -94,7 +61,34 @@ h1, h2, .lang-btn {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
-.content-section {
-    max-height: 50vh;
-    overflow-y: auto;
+/* ========== Kalbos mygtukai ========== */
+.language-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
 }
+
+.lang-btn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 8px 16px;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    font-family: var(--heading-font);
+}
+
+.lang-btn.active {
+    background: white !important;
+    color: black !important;
+    border-color: transparent;
+}
+
+.lang-btn:hover {
