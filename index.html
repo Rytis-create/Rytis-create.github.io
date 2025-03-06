@@ -2,25 +2,46 @@
 <html lang="lt">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RYTIS ALIŠAUSKAS | CV 2025</title>
     <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="gradient-bg"></div>
+    <!-- Judantis gradientinis fonas -->
+    <div class="animated-bg"></div>
 
-    <!-- Kalbos mygtukai -->
+    <!-- Kalbos mygtukai (perdėti į viršų) -->
     <div class="language-switcher">
         <button class="lang-btn active" data-lang="lt">LT</button>
         <button class="lang-btn" data-lang="en">EN</button>
     </div>
 
-    <!-- Žemėlapio konteineris -->
-    <div id="map" class="interactive-map"></div>
+    <!-- Pagrindinis turinio blokas -->
+    <main class="glass-container">
+        <header>
+            <h1 data-translate="name">RYTIS ALIŠAUSKAS</h1>
+            <a href="cv.pdf" download class="download-btn" data-translate="download">📥 Parsisiųsti CV</a>
+        </header>
 
-    <!-- Script'ai TEISINGA TVARKA -->
+        <!-- Patirties ir išsilavinimo sekcijos -->
+        <section class="content-section">
+            <div class="timeline-item" data-aos="fade-up">
+                <h2 data-translate="experience">PATIRTIS</h2>
+                <!-- Dinaminis turinys -->
+            </div>
+            <div class="timeline-item" data-aos="fade-up">
+                <h2 data-translate="education">ŠVIETIMAS</h2>
+                <!-- Dinaminis turinys -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Žemėlapis (apačioje) -->
+    <div id="map" class="map-bottom"></div>
+
+    <!-- Script'ai -->
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
-    <script src="map-manager.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
