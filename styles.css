@@ -11,6 +11,7 @@ body {
     color: white;
     margin: 0;
     overflow-x: hidden;
+    background: #0a0a23; /* Tamsus fonas užtikrina, kad žvaigždės būtų matomos */
 }
 
 /* ========== Žvaigždžių fonas ========== */
@@ -20,8 +21,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #000;
-    z-index: -2;
+    z-index: -2; /* Užtikrina, kad fonas būtų po visais elementais */
+    overflow: hidden;
 }
 
 .star {
@@ -30,23 +31,13 @@ body {
     height: 2px;
     background: white;
     border-radius: 50%;
-    animation: twinkle 2s infinite;
+    animation: twinkle 2s infinite ease-in-out;
+    will-change: transform, opacity; /* GPU pagreitėjimas */
 }
 
 @keyframes twinkle {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
-}
-
-/* ========== Žemėlapis apačioje ========== */
-.map-bottom {
-    height: 40vh;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    border-top: 3px solid rgba(255, 255, 255, 0.1);
-    z-index: 0;
+    0%, 100% { opacity: 0.3; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.2); }
 }
 
 /* ========== Stiklo efektas ========== */
@@ -57,7 +48,7 @@ body {
     margin: 2rem;
     padding: 2rem;
     position: relative;
-    z-index: 1;
+    z-index: 1; /* Užtikrina, kad turinys būtų virš fono */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
@@ -66,7 +57,7 @@ body {
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 1000;
+    z-index: 1000; /* Užtikrina, kad mygtukai būtų virš visko */
     background: rgba(255, 255, 255, 0.1);
     padding: 8px;
     border-radius: 12px;
@@ -95,6 +86,17 @@ body {
     background: rgba(255, 255, 255, 0.2);
 }
 
+/* ========== Žemėlapis apačioje ========== */
+.map-bottom {
+    height: 40vh;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-top: 3px solid rgba(255, 255, 255, 0.1);
+    z-index: 0; /* Užtikrina, kad žemėlapis būtų po turiniu, bet virš fono */
+}
+
 /* ========== Scroll animacijos ========== */
 [data-aos] {
     opacity: 0;
@@ -105,4 +107,45 @@ body {
 [data-aos].aos-animate {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ========== Papildomi stiliai ========== */
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-family: var(--heading-font);
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.download-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 10px 20px;
+    background: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.download-btn:hover {
+    background: darken(var(--accent-color), 10%);
+}
+
+.content-section {
+    margin: 2rem 0;
+}
+
+.timeline-item {
+    margin-bottom: 2rem;
+}
+
+.timeline-item h2 {
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
 }
