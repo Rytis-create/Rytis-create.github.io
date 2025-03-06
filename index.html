@@ -1,1 +1,34 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <!-- Metatags ir title su dinaminiais kintamaisiais -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lt="Mano Portfolio" data-en="My Portfolio">Mano Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/three@0.132.2/build/three.min.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+</head>
+<body>
+    <!-- Kalbos perjungimas -->
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="lt">LT</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+    </div>
 
+    <!-- 3D Avataras -->
+    <div id="avatar-container">
+        <canvas class="avatar3d"></canvas>
+    </div>
+
+    <!-- Interaktyvus žemėlapis -->
+    <div id="map" style="width: 100%; height: 400px"></div>
+
+    <!-- CV atsisiuntimas -->
+    <section class="cv-section">
+        <a href="cv.pdf" download class="cv-download">
+            📥 Atsisiųsti CV
+        </a>
+    </section>
+</body>
+</html>
