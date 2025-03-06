@@ -29,6 +29,28 @@ class PortfolioApp {
     this.createParticles();
     this.animateParticles();
   }
+  initParticles() {
+    if (!window.THREE) {
+        console.error('Three.js nerastas!');
+        return;
+    }
+
+    const particleContainer = document.querySelector('.particle-canvas');
+    if (!particleContainer) {
+        console.error('Klaida: .particle-canvas elementas nerastas dokumente!');
+        return;
+    }
+
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    particleContainer.appendChild(this.renderer.domElement);
+
+    this.createParticles();
+    this.animateParticles();
+}
+
 
   createParticles() {
     const geometry = new THREE.BufferGeometry();
