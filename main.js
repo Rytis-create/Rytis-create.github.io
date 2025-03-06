@@ -1,4 +1,3 @@
-// main.js
 class PortfolioApp {
   constructor() {
     this.initParticles();
@@ -58,15 +57,12 @@ class PortfolioApp {
 
   // Žemėlapio valdymas
   initMap() {
-    if (!mapboxgl || !mapboxgl.accessToken) {
-      console.error('Mapbox nerastas!');
-      return;
-    }
-
+    mapboxgl.accessToken = CONFIG.MAPBOX_TOKEN;
+    
     this.map = new mapboxgl.Map({
-      container: 'map',
+      container: 'interactive-map',
       style: 'mapbox://styles/mapbox/dark-v11',
-      center: [25.279651, 54.687157],
+      center: CONFIG.INITIAL_COORDS,
       zoom: 12,
       pitch: 45,
       bearing: -17.6
@@ -104,7 +100,7 @@ class PortfolioApp {
       color: '#00ffff',
       scale: 1.2
     })
-      .setLngLat([25.279651, 54.687157])
+      .setLngLat(CONFIG.INITIAL_COORDS)
       .setPopup(new mapboxgl.Popup().setHTML('<h3>Mano lokacija</h3>'))
       .addTo(this.map);
   }
@@ -172,5 +168,5 @@ class PortfolioApp {
 
 // Inicijuoti aplikaciją kai užsikrauna DOM
 document.addEventListener('DOMContentLoaded', () => {
-  const portfolioApp = new PortfolioApp();
+  new PortfolioApp();
 });
