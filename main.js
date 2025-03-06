@@ -1,10 +1,12 @@
 class PortfolioApp {
   constructor() {
-    this.initParticles();
-    this.initMap();
-    this.initLanguage();
-    this.init3DAvatar();
-    this.addEventListeners();
+    document.addEventListener('DOMContentLoaded', () => {
+      this.initParticles();
+      this.initMap();
+      this.initLanguage();
+      this.init3DAvatar();
+      this.addEventListeners();
+    });
   }
 
   // Particle efektų inicializavimas
@@ -14,11 +16,17 @@ class PortfolioApp {
       return;
     }
 
+    const canvasContainer = document.querySelector('.particle-canvas');
+    if (!canvasContainer) {
+      console.error('particle-canvas elementas nerastas!');
+      return;
+    }
+
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
     this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    document.querySelector('.particle-canvas').appendChild(this.renderer.domElement);
+    canvasContainer.appendChild(this.renderer.domElement);
 
     this.createParticles();
     this.animateParticles();
@@ -59,6 +67,12 @@ class PortfolioApp {
   initMap() {
     mapboxgl.accessToken = CONFIG.MAPBOX_TOKEN;
     
+    const mapContainer = document.getElementById('interactive-map');
+    if (!mapContainer) {
+      console.error('interactive-map elementas nerastas!');
+      return;
+    }
+
     this.map = new mapboxgl.Map({
       container: 'interactive-map',
       style: 'mapbox://styles/mapbox/dark-v11',
@@ -79,12 +93,18 @@ class PortfolioApp {
   }
 
   add3DToggle() {
+    const overlay = document.querySelector('.map-overlay');
+    if (!overlay) {
+      console.error('map-overlay elementas nerastas!');
+      return;
+    }
+    
     const button = document.createElement('button');
     button.className = 'map-3d-toggle';
     button.textContent = '3D View';
     button.onclick = () => this.toggle3DView();
     
-    document.querySelector('.map-overlay').appendChild(button);
+    overlay.appendChild(button);
   }
 
   toggle3DView() {
@@ -126,6 +146,11 @@ class PortfolioApp {
       this.avatar = await loader.loadAsync('avatar.glb');
       
       const canvas = document.querySelector('.avatar3d');
+      if (!canvas) {
+        console.error('avatar3d canvas nerastas!');
+        return;
+      }
+
       const renderer = new THREE.WebGLRenderer({ 
         canvas,
         alpha: true,
@@ -160,13 +185,13 @@ class PortfolioApp {
   }
 
   onWindowResize() {
-    this.camera.aspect = window.innerWidth / window.innerHeight;
-    this.camera.updateProjectionMatrix();
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    if (this.camera && this.renderer) {
+      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.updateProjectionMatrix();
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+    }
   }
 }
 
-// Inicijuoti aplikaciją kai užsikrauna DOM
-document.addEventListener('DOMContentLoaded', () => {
-  new PortfolioApp();
-});
+// Inicijuoti aplikaciją
+new PortfolioApp();
