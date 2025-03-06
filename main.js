@@ -51,9 +51,9 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoicnl0aXMxMjMiLCJhIjoiY203eDRkMXQ5MDFodzJsczZsN
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [23.8813, 55.1694], // Lietuvos koordinatės
-    zoom: 6
+    center: [25.4167, 55.2333], // Lietuvos koordinatės
+    zoom: 12
 });
 new mapboxgl.Marker()
-    .setLngLat([23.8813, 55.1694])
+    .setLngLat([25.4167, 55.2333])
     .addTo(map);
