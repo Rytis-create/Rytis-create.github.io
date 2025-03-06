@@ -54,3 +54,6 @@ const map = new mapboxgl.Map({
     center: [23.8813, 55.1694], // Lietuvos koordinatės
     zoom: 6
 });
+new mapboxgl.Marker()
+    .setLngLat([23.8813, 55.1694])
+    .addTo(map);
