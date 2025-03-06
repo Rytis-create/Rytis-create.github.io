@@ -1,38 +1,48 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Mapbox Žemėlapis</title>
-    <!-- Mapbox GL JS ir CSS -->
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RYTIS ALIŠAUSKAS | CV 2025</title>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Anomuotas fonas -->
+    <div class="gradient-bg"></div>
+
+    <!-- Kalbos mygtukai -->
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="lt">LT</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <!-- Pagrindinis turinys -->
+    <main class="glass-container">
+        <header>
+            <h1 data-translate="name">RYTIS ALIŠAUSKAS</h1>
+            <a href="cv.pdf" download class="download-btn" data-translate="download">📥 Parsisiųsti CV</a>
+        </header>
+
+        <!-- Sekcijos -->
+        <section class="timeline">
+            <div class="timeline-item" data-aos="fade-up">
+                <h2 data-translate="experience">PATIRTIS</h2>
+                <!-- Dinaminis turinys (užpildomas per JS) -->
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-up">
+                <h2 data-translate="education">ŠVIETIMAS</h2>
+                <!-- Dinaminis turinys -->
+            </div>
+        </section>
+
+        <!-- Interaktyvus žemėlapis -->
+        <div id="map" class="interactive-map"></div>
+    </main>
+
+    <!-- JavaScript -->
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css" rel="stylesheet" />
-    <style>
-      #map {
-        height: 600px;  /* Aukštis */
-        width: 100%;   
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-
-    <script>
-      // 1. Įdėkite savo Mapbox tokeną
-      mapboxgl.accessToken = 'pk.eyJ1Ijoicnl0aXMxMjMiLCJhIjoiY203eDRkMXQ5MDFodzJsczZsNmhqbWw0NSJ9.M1CYVTz7inCBl3b2xLq8Ww';
-
-      // 2. Inicializuokite žemėlapį
-      const map = new mapboxgl.Map({
-        container: 'map',          // HTML elemento ID
-        style: 'mapbox://styles/mapbox/streets-v12',  // Stilius (pvz., satellite-v9)
-        center: [25.2797, 54.6872], // [Longitude, Latitude] (Vilnius)
-        zoom: 12                    // Priartinimo lygis
-      });
-
-      // 3. Papildomi elementai (neprivaloma)
-      // Pridėti žymeklį
-      new mapboxgl.Marker()
-        .setLngLat([25.2797, 54.6872])
-        .setPopup(new mapboxgl.Popup().setHTML("<h3>Sveikas, čia Vilnius!</h3>"))
-        .addTo(map);
-    </script>
-  </body>
+    <script src="main.js"></script>
+</body>
 </html>
