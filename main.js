@@ -47,3 +47,29 @@ const map = new mapboxgl.Map({
     center: [25.279651, 54.687157], // Vilniaus koordinatės
     zoom: 12
 });
+// Papildomas žemėlapio funkcionalumas
+function initMap() {
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/dark-v10',
+        center: [25.279651, 54.687157],
+        zoom: 12,
+        pitch: 45, // 3D efektas
+        bearing: -17.6
+    });
+
+    // 3D perjungimas
+    document.querySelector('.map-3d-toggle').addEventListener('click', () => {
+        const pitch = map.getPitch() === 0 ? 45 : 0;
+        map.easeTo({ pitch, duration: 1000 });
+    });
+
+    // Markeris su popup
+    new mapboxgl.Marker({ color: '#0ff' })
+        .setLngLat([25.279651, 54.687157])
+        .setPopup(new mapboxgl.Popup().setHTML("<h3>Mano lokacija</h3>"))
+        .addTo(map);
+}
+
+// Inicijuoti žemėlapį po puslapio užkrovimo
+window.addEventListener('load', initMap);
