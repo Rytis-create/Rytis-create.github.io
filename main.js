@@ -15,14 +15,36 @@ class CVApp {
             }
         };
 
+        // Inicializuoti komponentus
+        this.initStars();
         this.initMap();
         this.initLanguageSwitcher();
         this.initScrollAnimations();
     }
 
-    // Žemėlapio inicializavimas
+    // ----------------------------------------
+    // Žvaigždžių fonas
+    // ----------------------------------------
+    initStars() {
+        const starsContainer = document.createElement('div');
+        starsContainer.className = 'star-background';
+        document.body.prepend(starsContainer);
+
+        for (let i = 0; i < 200; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 2}s`;
+            starsContainer.appendChild(star);
+        }
+    }
+
+    // ----------------------------------------
+    // Žemėlapis
+    // ----------------------------------------
     initMap() {
-        mapboxgl.accessToken = 'pk.eyJ1Ijoicnl0aXMxMjMiLCJhIjoiY203eDRkMXQ5MDFodzJsczZsNmhqbWw0NSJ9.M1CYVTz7inCBl3b2xLq8Ww';
+        mapboxgl.accessToken = 'JŪSŲ_MAPBOX_TOKENAS'; // ❗ Pakeisti čia
         this.map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/dark-v11',
@@ -30,23 +52,29 @@ class CVApp {
             zoom: 12
         });
 
+        // Žymeklis
         new mapboxgl.Marker({ color: '#009ffd' })
             .setLngLat([25.2797, 54.6872])
             .setPopup(new mapboxgl.Popup().setHTML("<h3>Mano lokacija</h3>"))
             .addTo(this.map);
     }
 
-    // Kalbų keitimo logika
+    // ----------------------------------------
+    // Kalbų keitimas
+    // ----------------------------------------
     initLanguageSwitcher() {
         document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const lang = btn.dataset.lang;
-                this.updateUIText(lang);
+            btn.addEventListener('click', (e) => {
+                // Pašalinti aktyvų klasę visiems
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                // Pridėti aktyvų klasę paspaustam
+                e.target.classList.add('active');
+                // Keisti kalbą
+                this.updateUIText(e.target.dataset.lang);
             });
         });
     }
 
-    // UI teksto atnaujinimas
     updateUIText(lang) {
         document.querySelectorAll('[data-translate]').forEach(el => {
             const key = el.dataset.translate;
@@ -54,7 +82,9 @@ class CVApp {
         });
     }
 
+    // ----------------------------------------
     // Scroll animacijos
+    // ----------------------------------------
     initScrollAnimations() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -62,7 +92,7 @@ class CVApp {
                     entry.target.classList.add('aos-animate');
                 }
             });
-        });
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
     }
