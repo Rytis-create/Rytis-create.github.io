@@ -71,6 +71,21 @@ document.querySelectorAll('.lang-btn').forEach(button => {
         });
     });
 });
+let randomNumber = Math.floor(Math.random() * 100) + 1;
+let attempts = 0;
+
+document.getElementById('submitGuess').addEventListener('click', function() {
+    const userGuess = Number(document.getElementById('guess').value);
+    attempts++;
+
+    if (userGuess === randomNumber) {
+        document.getElementById('result').textContent = `Teisingai! Jūs atspėjote skaičių ${randomNumber} per ${attempts} bandymus!`;
+    } else if (userGuess < randomNumber) {
+        document.getElementById('result').textContent = 'Per mažai! Bandykite dar kartą.';
+    } else {
+        document.getElementById('result').textContent = 'Per daug! Bandykite dar kartą.';
+    }
+});
 
 // Map Initialization
 mapboxgl.accessToken = 'pk.eyJ1Ijoicnl0aXMxMjMiLCJhIjoiY203eDRkMXQ5MDFodzJsczZsNmhqbWw0NSJ9.M1CYVTz7inCBl3b2xLq8Ww';
