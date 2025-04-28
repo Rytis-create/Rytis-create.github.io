@@ -9,85 +9,85 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Žvaigždžių fonas (sukurtas per JS) -->
     <div class="star-background"></div>
 
-    <!-- Kalbos mygtukai -->
+    <!-- Sticky Navigation Bar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#about">Apie mane</a></li>
+            <li><a href="#projects">Projektai</a></li>
+            <li><a href="#skills">Įgūdžiai</a></li>
+            <li><a href="#contact">Kontaktai</a></li>
+        </ul>
+    </nav>
+
     <div class="language-switcher">
         <button class="lang-btn active" data-lang="lt">LT</button>
         <button class="lang-btn" data-lang="en">EN</button>
     </div>
 
-    <!-- Pagrindinis turinys -->
- <main class="glass-container">
-    <!-- Hero sekcija -->
-    <header class="hero">
-        <h1 data-translate="name">RYTIS ALIŠAUSKAS</h1>
-        <p data-translate="tagline">Programuotojas | Web kūrėjas</p>
-         <div class="cv-buttons">
+    <main class="glass-container">
+        <header class="hero">
+            <h1 data-translate="name">RYTIS ALIŠAUSKAS</h1>
+            <p data-translate="tagline">Programuotojas | Web kūrėjas</p>
+            <div class="cv-buttons">
                 <a href="cv.pdf" download class="cv-btn download-btn">📥 Atsisiųsti CV</a>
                 <a href="cv.pdf" target="_blank" class="cv-btn view-btn">👁️ Peržiūrėti CV</a>
             </div>
-    </header>
+        </header>
 
-    <!-- Apie mane sekcija -->
-    <section id="about" class="content-section">
-        <h2 data-translate="about">Apie mane</h2>
-        <p data-translate="aboutText">Esu programuotojas iš Lietuvos, turintis patirties kuriant modernius web sprendimus. Mėgstu iššūkius ir nuolat tobulinu savo įgūdžius.</p>
-    </section>
+        <section id="about" class="content-section">
+            <h2 data-translate="about">Apie mane</h2>
+            <p data-translate="aboutText">Esu programuotojas iš Lietuvos, turintis patirties kuriant modernius web sprendimus. Mėgstu iššūkius ir nuolat tobulinu savo įgūdžius.</p>
+        </section>
 
-    <!-- Projektų sekcija -->
-    <section id="projects" class="content-section">
-        <h2 data-translate="projects">Projektai</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <h3 data-translate="project1">Portfolio puslapis</h3>
-                <p data-translate="project1Desc">Šis portfolio puslapis, sukurtas naudojant HTML, CSS ir JavaScript.</p>
-                <a href="#" class="project-link" data-translate="viewProject">Žiūrėti projektą</a>
+        <section id="projects" class="content-section">
+            <h2 data-translate="projects">Projektai</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3 data-translate="project1">Portfolio puslapis</h3>
+                    <p data-translate="project1Desc">Šis portfolio puslapis, sukurtas naudojant HTML, CSS ir JavaScript.</p>
+                    <a href="#" class="project-link" data-translate="viewProject">Žiūrėti projektą</a>
+                </div>
+                <div class="project-card">
+                    <h3 data-translate="project2">E-parduotuvė</h3>
+                    <p data-translate="project2Desc">E-parduotuvė, sukurta naudojant React ir Node.js.</p>
+                    <a href="#" class="project-link" data-translate="viewProject">Žiūrėti projektą</a>
+                </div>
             </div>
-            <div class="project-card">
-                <h3 data-translate="project2">E-parduotuvė</h3>
-                <p data-translate="project2Desc">E-parduotuvė, sukurta naudojant React ir Node.js.</p>
-                <a href="#" class="project-link" data-translate="viewProject">Žiūrėti projektą</a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Įgūdžių sekcija -->
-    <section id="skills" class="content-section">
-        <h2 data-translate="skills">Įgūdžiai</h2>
-        <div class="skills-grid">
-            <div class="skill">
-                <span data-translate="html">HTML</span>
-                <div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div>
+        <section id="skills" class="content-section">
+            <h2 data-translate="skills">Įgūdžiai</h2>
+            <div class="skills-grid">
+                <div class="skill">
+                    <span data-translate="html">HTML</span>
+                    <div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill">
+                    <span data-translate="css">CSS</span>
+                    <div class="skill-bar"><div class="skill-level" style="width: 85%;"></div></div>
+                </div>
+                <div class="skill">
+                    <span data-translate="js">JavaScript</span>
+                    <div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div>
+                </div>
             </div>
-            <div class="skill">
-                <span data-translate="css">CSS</span>
-                <div class="skill-bar"><div class="skill-level" style="width: 85%;"></div></div>
-            </div>
-            <div class="skill">
-                <span data-translate="js">JavaScript</span>
-                <div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Kontaktų sekcija -->
-    <section id="contact" class="content-section">
-        <h2 data-translate="contact">Kontaktai</h2>
-        <form id="contact-form">
-            <input type="text" id="name" placeholder="Jūsų vardas" required>
-            <input type="email" id="email" placeholder="El. paštas" required>
-            <textarea id="message" placeholder="Jūsų žinutė" required></textarea>
-            <button type="submit" data-translate="send">Siųsti</button>
-        </form>
-    </section>
-</main>
+        <section id="contact" class="content-section">
+            <h2 data-translate="contact">Kontaktai</h2>
+            <form id="contact-form">
+                <input type="text" id="name" placeholder="Jūsų vardas" required>
+                <input type="email" id="email" placeholder="El. paštas" required>
+                <textarea id="message" placeholder="Jūsų žinutė" required></textarea>
+                <button type="submit" data-translate="send">Siųsti</button>
+            </form>
+        </section>
+    </main>
 
-<!-- Žemėlapis (apačioje) -->
-<div id="map" class="map-bottom"></div>
+    <div id="map" class="map-bottom"></div>
 
-    <!-- Script'ai -->
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
     <script src="main.js"></script>
 </body>
