@@ -110,6 +110,17 @@ body {
     padding: 20px;
     border-radius: 10px;
 }
+.cv-btn {
+    background: #00b4db;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.cv-btn:hover {
+    background: #0099b8;
+}
 
 .skill-bar {
     background: rgba(255, 255, 255, 0.2);
