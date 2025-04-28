@@ -1,4 +1,4 @@
-// Kalbos perjungimas
+// Language Switching
 const translations = {
     lt: {
         name: "RYTIS ALIŠAUSKAS",
@@ -35,7 +35,18 @@ const translations = {
         send: "Send"
     }
 };
-// JavaScript žvaigždžių animacija
+
+// Smooth Scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Star Animation
 const starBackground = document.querySelector('.star-background');
 
 function createStar() {
@@ -61,12 +72,12 @@ document.querySelectorAll('.lang-btn').forEach(button => {
     });
 });
 
-// Žemėlapis
+// Map Initialization
 mapboxgl.accessToken = 'pk.eyJ1Ijoicnl0aXMxMjMiLCJhIjoiY203eDRkMXQ5MDFodzJsczZsNmhqbWw0NSJ9.M1CYVTz7inCBl3b2xLq8Ww';
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [25.4167, 55.2333], // Lietuvos koordinatės
+    center: [25.4167, 55.2333],
     zoom: 12
 });
 new mapboxgl.Marker()
