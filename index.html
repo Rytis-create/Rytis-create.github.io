@@ -13,23 +13,21 @@
 
     <!-- Sticky Navigation Bar -->
     <nav class="navbar">
-        <ul>
-            <li><a href="#about">Apie mane</a></li>
-            <li><a href="#projects">Projektai</a></li>
-            <li><a href="#skills">Įgūdžiai</a></li>
-            <li><a href="#contact">Kontaktai</a></li>
-        </ul>
+        <div class="container">
+            <h1 class="logo">RYTIS ALIŠAUSKAS</h1>
+            <ul>
+                <li><a href="#about">Apie mane</a></li>
+                <li><a href="#projects">Projektai</a></li>
+                <li><a href="#skills">Įgūdžiai</a></li>
+                <li><a href="#contact">Kontaktai</a></li>
+                <li><a href="cv.html" class="cv-btn">CV</a></li> <!-- CV Button -->
+            </ul>
+        </div>
     </nav>
-
-    <div class="language-switcher">
-        <button class="lang-btn active" data-lang="lt">LT</button>
-        <button class="lang-btn" data-lang="en">EN</button>
-    </div>
 
     <main class="glass-container">
         <header class="hero">
-            <h1 data-translate="name">RYTIS ALIŠAUSKAS</h1>
-            <p data-translate="tagline">Programuotojas | Web kūrėjas</p>
+            <h2>Programuotojas | Web kūrėjas</h2>
             <div class="cv-buttons">
                 <a href="cv.pdf" download class="cv-btn download-btn">📥 Atsisiųsti CV</a>
                 <a href="cv.pdf" target="_blank" class="cv-btn view-btn">👁️ Peržiūrėti CV</a>
@@ -37,51 +35,51 @@
         </header>
 
         <section id="about" class="content-section">
-            <h2 data-translate="about">Apie mane</h2>
-            <p data-translate="aboutText">Esu programuotojas iš Lietuvos, turintis patirties kuriant modernius web sprendimus. Mėgstu iššūkius ir nuolat tobulinu savo įgūdžius.</p>
+            <h2>Apie mane</h2>
+            <p>Esu programuotojas iš Lietuvos, turintis patirties kuriant modernius web sprendimus. Mėgstu iššūkius ir nuolat tobulinu savo įgūdžius.</p>
         </section>
 
         <section id="projects" class="content-section">
-            <h2 data-translate="projects">Projektai</h2>
+            <h2>Projektai</h2>
             <div class="project-grid">
                 <div class="project-card">
-                    <h3 data-translate="project1">Portfolio puslapis</h3>
-                    <p data-translate="project1Desc">Šis portfolio puslapis, sukurtas naudojant HTML, CSS ir JavaScript.</p>
-                    <a href="#" class="project-link" data-translate="viewProject">Žiūrėti projektą</a>
+                    <h3>Portfolio puslapis</h3>
+                    <p>Šis portfolio puslapis, sukurtas naudojant HTML, CSS ir JavaScript.</p>
+                    <a href="#" class="project-link">Žiūrėti projektą</a>
                 </div>
                 <div class="project-card">
-                    <h3 data-translate="project2">E-parduotuvė</h3>
-                    <p data-translate="project2Desc">E-parduotuvė, sukurta naudojant React ir Node.js.</p>
-                    <a href="#" class="project-link" data-translate="viewProject">Žiūrėti projektą</a>
+                    <h3>E-parduotuvė</h3>
+                    <p>E-parduotuvė, sukurta naudojant React ir Node.js.</p>
+                    <a href="#" class="project-link">Žiūrėti projektą</a>
                 </div>
             </div>
         </section>
 
         <section id="skills" class="content-section">
-            <h2 data-translate="skills">Įgūdžiai</h2>
+            <h2>Įgūdžiai</h2>
             <div class="skills-grid">
                 <div class="skill">
-                    <span data-translate="html">HTML</span>
+                    <span>HTML</span>
                     <div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div>
                 </div>
                 <div class="skill">
-                    <span data-translate="css">CSS</span>
+                    <span>CSS</span>
                     <div class="skill-bar"><div class="skill-level" style="width: 85%;"></div></div>
                 </div>
                 <div class="skill">
-                    <span data-translate="js">JavaScript</span>
+                    <span>JavaScript</span>
                     <div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div>
                 </div>
             </div>
         </section>
 
         <section id="contact" class="content-section">
-            <h2 data-translate="contact">Kontaktai</h2>
+            <h2>Kontaktai</h2>
             <form id="contact-form">
                 <input type="text" id="name" placeholder="Jūsų vardas" required>
                 <input type="email" id="email" placeholder="El. paštas" required>
                 <textarea id="message" placeholder="Jūsų žinutė" required></textarea>
-                <button type="submit" data-translate="send">Siųsti</button>
+                <button type="submit">Siųsti</button>
             </form>
         </section>
     </main>
