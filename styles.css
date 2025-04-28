@@ -134,6 +134,16 @@ body {
     height: 100%;
     border-radius: 5px;
 }
+#game {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#guess {
+    padding: 10px;
+    margin: 10px 0;
+    width: 200px; /* Nustatykite plotį, kad būtų patogiau įvesti */
+}
 
 #map {
     height: 400px;
